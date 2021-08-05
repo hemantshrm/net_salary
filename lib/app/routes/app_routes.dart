@@ -10,6 +10,8 @@ abstract class Routes {
   static const INTRO_SCREEN = _Paths.INTRO_SCREEN;
   static const DASHBOARD = _Paths.DASHBOARD;
   static const COMPANSATION = _Paths.COMPANSATION;
+  static const COMPENSATION = _Paths.COMPENSATION;
+  static const ALLOWANCE = _Paths.ALLOWANCE;
 }
 
 abstract class _Paths {
@@ -21,4 +23,6 @@ abstract class _Paths {
   static const INTRO_SCREEN = '/intro-screen';
   static const DASHBOARD = '/dashboard';
   static const COMPANSATION = '/compansation';
+  static const COMPENSATION = '/compensation';
+  static const ALLOWANCE = '/allowance';
 }

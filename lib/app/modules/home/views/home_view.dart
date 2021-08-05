@@ -36,11 +36,11 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: KDynamicWidth.width20 + KDynamicWidth.width10,
             ),
-            getEditText(context, 'Email Address', 'Enter Email', false),
+            getEmailPassFields(context, 'Email Address', 'Enter Email', false),
             SizedBox(
               height: 30,
             ),
-            getEditText(context, 'Password', 'Enter Password', true),
+            getEmailPassFields(context, 'Password', 'Enter Password', true),
             SizedBox(
               height: KDynamicWidth.width20,
             ),
@@ -164,32 +164,21 @@ iconImageContainer(BuildContext context, String image) {
   return Container(
     height: 50,
     width: 50,
-    child: Neumorphic(
-      style: NeumorphicStyle(
-        shape: NeumorphicShape.flat,
-        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(7)),
-        depth: 6,
-        lightSource: LightSource.topLeft,
-        shadowLightColor: ThemeController.to.isDarkTheme
-            ? Colors.white.withOpacity(0.4)
-            : Colors.white,
-        shadowDarkColor:
-            ThemeController.to.isDarkTheme ? Colors.black : Colors.black54,
-        color: Theme.of(context).scaffoldBackgroundColor,
-      ),
-      child: Container(
-          child: Center(
-        child: Image.asset(
-          image,
-          height: 24,
-          width: 24,
-        ),
-      )),
-    ),
+    child: CustomNmorphicForTextFields(
+        Container(
+            child: Center(
+          child: Image.asset(
+            image,
+            height: 24,
+            width: 24,
+          ),
+        )),
+        7),
   );
 }
 
-getEditText(BuildContext context, String heading, String hint, bool isIcon) {
+getEmailPassFields(
+    BuildContext context, String heading, String hint, bool isIcon) {
   return Container(
     height: Get.width / 6,
     child: Neumorphic(
@@ -211,29 +200,19 @@ getEditText(BuildContext context, String heading, String hint, bool isIcon) {
           child: Container(
             height: 35,
             child: TextField(
-              style: TextStyle(
-                fontSize: 15,
-                color: Theme.of(context).primaryColorLight,
-                letterSpacing: 0.672,
-              ),
+              style: KTextStyle.f15w4
+                  .copyWith(color: Theme.of(context).primaryColorLight),
               maxLength: 30,
               decoration: InputDecoration(
                   counterText: '',
                   labelText: heading,
-                  labelStyle: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryColorLight,
-                    letterSpacing: 0.5760000000000001,
-                  ),
+                  labelStyle: KTextStyle.f15w4
+                      .copyWith(color: Theme.of(context).primaryColorLight),
                   contentPadding: EdgeInsets.zero,
                   border: InputBorder.none,
                   hintText: '$hint',
-                  hintStyle: TextStyle(
-                    fontSize: 15,
-                    color: Theme.of(context).primaryColorLight,
-                    letterSpacing: 0.672,
-                  ),
+                  hintStyle: KTextStyle.f15w4
+                      .copyWith(color: Theme.of(context).primaryColorLight),
                   suffixIcon: isIcon
                       ? Icon(
                           Icons.remove_red_eye,
@@ -244,128 +223,6 @@ getEditText(BuildContext context, String heading, String hint, bool isIcon) {
             ),
           ),
         ),
-      ),
-    ),
-  );
-}
-
-getEditTextWithoutIcon(String heading, String hint,
-    {bool isNum, Function ontextChange(String)}) {
-  return Container(
-    margin: EdgeInsets.symmetric(horizontal: KDynamicWidth.width20),
-    child: FittedBox(
-      child: ClayContainer(
-        height: 60,
-        width: Get.width,
-        borderRadius: 15,
-        color: Color(0xffe0efff),
-        child: Padding(
-          padding: EdgeInsets.only(top: 4, left: KDynamicWidth.width20),
-          child: TextFormField(
-              keyboardType:
-                  isNum != null ? TextInputType.number : TextInputType.text,
-              maxLength: isNum != null ? 11 : 30,
-              cursorColor: Colors.grey,
-              textInputAction: TextInputAction.unspecified,
-              maxLines: 1,
-              onChanged: (text) {
-                ontextChange(text);
-              },
-              inputFormatters: [
-                isNum != null
-                    ? CurrencyTextInputFormatter(
-                        locale: 'Hi',
-                        decimalDigits: 0,
-                        symbol: '',
-                      )
-                    : FilteringTextInputFormatter.deny(RegExp(r'[/\\]')),
-              ],
-              autofocus: false,
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                fontSize: 18,
-                color: const Color(0xff2c2c2c),
-                letterSpacing: 0.672,
-              ),
-              textAlignVertical: TextAlignVertical.center,
-              decoration: InputDecoration(
-                labelText: heading,
-                labelStyle: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  color: const Color(0xff2c2c2c),
-                  letterSpacing: 0.5760000000000001,
-                ),
-                counterText: '',
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(left: 2, bottom: 4),
-                focusedBorder: InputBorder.none,
-                hintStyle: TextStyle(
-                  fontSize: 20,
-                  color: const Color(0xff2c2c2c),
-                  letterSpacing: 0.672,
-                ),
-              )),
-        ),
-        // Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.only(top: 4, left: 20),
-        //       child: Container(
-        //         height: 22,
-        //         child: Text(
-        //           '$heading',
-        //           maxLines: 2,
-        //           style: TextStyle(
-        //             fontFamily: 'Montserrat',
-        //             fontSize: 18,
-        //             fontWeight: FontWeight.w400,
-        //             color: const Color(0xff2c2c2c),
-        //             letterSpacing: 0.5760000000000001,
-        //           ),
-        //           textAlign: TextAlign.left,
-        //         ),
-        //       ),
-        //     ),
-        //     Padding(
-        //       padding: const EdgeInsets.only(left: 20),
-        //       child: Container(
-        //         height: 30,
-        //         child: TextField(
-        //           style: TextStyle(
-        //             fontFamily: 'Montserrat',
-        //             fontSize: 18,
-        //             color: const Color(0xff2c2c2c),
-        //             letterSpacing: 0.672,
-        //           ),
-        //           inputFormatters: [
-        //             isNum != null
-        //                 ? CurrencyTextInputFormatter(
-        //                     locale: 'Hi',
-        //                     decimalDigits: 0,
-        //                     symbol: '',
-        //                   )
-        //                 : FilteringTextInputFormatter.deny(RegExp(r'[/\\]')),
-        //           ],
-        //           keyboardType:
-        //               isNum != null ? TextInputType.number : TextInputType.text,
-        //           maxLength: isNum != null ? 11 : 30,
-        //           textAlignVertical: TextAlignVertical.top,
-        //           decoration: InputDecoration(
-        //             counterText: '',
-        //             contentPadding: EdgeInsets.only(bottom: 14),
-        //             border: InputBorder.none,
-        //             hintText: '$hint',
-        //           ),
-        //           textAlign: TextAlign.left,
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ),
     ),
   );

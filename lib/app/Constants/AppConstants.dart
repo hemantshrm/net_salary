@@ -20,6 +20,8 @@ class KTextStyle {
       TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
   static const TextStyle f14w4 =
       TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
+  static const TextStyle f15w4 =
+      TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
   static const TextStyle f16w5 =
       TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
 }

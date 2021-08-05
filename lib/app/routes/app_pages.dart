@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 
+import 'package:net_salary/app/modules/allowance/bindings/allowance_binding.dart';
+import 'package:net_salary/app/modules/allowance/views/allowance_view.dart';
 import 'package:net_salary/app/modules/calculatetakehomepay/bindings/calculatetakehomepay_binding.dart';
 import 'package:net_salary/app/modules/calculatetakehomepay/views/calculatetakehomepay_view.dart';
+import 'package:net_salary/app/modules/compensation/bindings/compensation_binding.dart';
+import 'package:net_salary/app/modules/compensation/views/compensation_view.dart';
 import 'package:net_salary/app/modules/createprofile/bindings/createprofile_binding.dart';
 import 'package:net_salary/app/modules/createprofile/views/createprofile_view.dart';
 import 'package:net_salary/app/modules/dashboard/bindings/dashboard_binding.dart';
@@ -55,6 +59,16 @@ class AppPages {
       name: _Paths.DASHBOARD,
       page: () => DashboardView(),
       binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.COMPENSATION,
+      page: () => CompensationView(),
+      binding: CompensationBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALLOWANCE,
+      page: () => AllowanceView(),
+      binding: AllowanceBinding(),
     ),
   ];
 }

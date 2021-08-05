@@ -155,25 +155,25 @@ class CalculatetakehomepayView extends GetView<CalculatetakehomepayController> {
                   SizedBox(
                     height: 10,
                   ),
-                  getEditTextWithoutIcon(
+                  GetEditTextWithoutIcon(
                       "Basic Salary(₹)", 'Enter Basic Salary',
                       isNum: true),
                   SizedBox(
                     height: 20,
                   ),
-                  getEditTextWithoutIcon(
+                  GetEditTextWithoutIcon(
                       "Dearness Allowance(₹)", 'Enter Dearness Allowance',
                       isNum: true),
                   SizedBox(
                     height: 20,
                   ),
-                  getEditTextWithoutIcon(
+                  GetEditTextWithoutIcon(
                       "Performance Incentive / Bonus(₹)", 'Enter Bonus',
                       isNum: true),
                   SizedBox(
                     height: 20,
                   ),
-                  getEditTextWithoutIcon(
+                  GetEditTextWithoutIcon(
                       "Special Allowance(₹)", 'Enter Special Allowance',
                       isNum: true),
                 ],
@@ -262,7 +262,7 @@ class CalculatetakehomepayView extends GetView<CalculatetakehomepayController> {
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  getEditTextWithoutIcon(
+                                  GetEditTextWithoutIcon(
                                       "House Rent Allowance(₹)", 'Enter HRA',
                                       isNum: true),
                                   SizedBox(
@@ -365,7 +365,7 @@ class CalculatetakehomepayView extends GetView<CalculatetakehomepayController> {
                               padding: EdgeInsets.only(
                                   top: KDynamicWidth.width10,
                                   bottom: KDynamicWidth.width20),
-                              child: getEditTextWithoutIcon(
+                              child: GetEditTextWithoutIcon(
                                   "Transport Allowance(₹)",
                                   'Enter Transport Allowance',
                                   isNum: true),
@@ -463,13 +463,13 @@ class CalculatetakehomepayView extends GetView<CalculatetakehomepayController> {
                     SizedBox(
                       height: KDynamicWidth.width20,
                     ),
-                    getEditTextWithoutIcon(
+                    GetEditTextWithoutIcon(
                         "Cost of Car(₹)", 'Enter Cost of Car',
                         isNum: true),
                     SizedBox(
                       height: KDynamicWidth.width20,
                     ),
-                    getEditTextWithoutIcon(
+                    GetEditTextWithoutIcon(
                         "Annual Hire Charges(₹)", 'Enter amount',
                         isNum: true),
                     SizedBox(
@@ -485,7 +485,7 @@ class CalculatetakehomepayView extends GetView<CalculatetakehomepayController> {
                     SizedBox(
                       height: KDynamicWidth.width20,
                     ),
-                    getEditTextWithoutIcon(
+                    GetEditTextWithoutIcon(
                         "Annual Salary of Chauffeur(₹)", 'Enter amount',
                         isNum: true),
                     SizedBox(

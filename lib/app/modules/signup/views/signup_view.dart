@@ -29,15 +29,15 @@ class SignupView extends GetView<SignupController> {
             SizedBox(
               height: KDynamicWidth.width20,
             ),
-            getEditText(context, 'Email Address', 'Enter Email', false),
+            getEmailPassFields(context, 'Email Address', 'Enter Email', false),
             SizedBox(
               height: 30,
             ),
-            getEditText(context, 'Password', 'Enter Password', true),
+            getEmailPassFields(context, 'Password', 'Enter Password', true),
             SizedBox(
               height: 30,
             ),
-            getEditText(
+            getEmailPassFields(
                 context, 'Confirm Password', 'Enter Confirm Password', true),
             SizedBox(
               height: 20,
