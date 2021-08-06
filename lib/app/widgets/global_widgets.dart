@@ -192,7 +192,7 @@ class CustomRadioBtn3options extends StatelessWidget {
                           Transform.scale(
                             scale: 1.5,
                             child: new Radio(
-                                activeColor: Theme.of(context).primaryColor,
+                                activeColor: Theme.of(context).focusColor,
                                 value: 0,
                                 groupValue: _radioValue1,
                                 onChanged: (val) {
@@ -217,7 +217,7 @@ class CustomRadioBtn3options extends StatelessWidget {
                           Transform.scale(
                             scale: 1.5,
                             child: new Radio(
-                                activeColor: Theme.of(context).primaryColor,
+                                activeColor: Theme.of(context).focusColor,
                                 value: 1,
                                 groupValue: _radioValue1,
                                 onChanged: (val) {
@@ -242,7 +242,7 @@ class CustomRadioBtn3options extends StatelessWidget {
                           Transform.scale(
                             scale: 1.5,
                             child: new Radio(
-                                activeColor: Theme.of(context).primaryColor,
+                                activeColor: Theme.of(context).focusColor,
                                 value: 2,
                                 groupValue: _radioValue1,
                                 onChanged: (val) {
@@ -264,4 +264,102 @@ class CustomRadioBtn3options extends StatelessWidget {
             ),
             17));
   }
+}
+
+Padding signInORsignUpUsing(BuildContext context, text) {
+  return Padding(
+    padding: EdgeInsets.symmetric(
+      vertical: KDynamicWidth.width20,
+    ),
+    child: Row(children: <Widget>[
+      Expanded(child: Divider()),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: KDynamicWidth.width10),
+        child: Text(
+          text,
+          style: TextStyle(
+              fontSize: 16, color: Theme.of(context).primaryColorLight),
+        ),
+      ),
+      Expanded(child: Divider()),
+    ]),
+  );
+}
+
+Container buildSigninSignUpButtons(BuildContext context) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: Get.width / 6),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        iconImageContainer(context, 'assets/images/facebook_icon.png'),
+        iconImageContainer(context, 'assets/images/google.png'),
+        iconImageContainer(
+            context,
+            ThemeController.to.isDarkTheme
+                ? 'assets/images/apple_dark.png'
+                : 'assets/images/apple_icon.png'),
+      ],
+    ),
+  );
+}
+
+Row buildOr(BuildContext context) {
+  return Row(children: <Widget>[
+    Expanded(child: Divider()),
+    Padding(
+      padding: EdgeInsets.symmetric(horizontal: KDynamicWidth.width10),
+      child: Text(
+        "Or",
+        style:
+            TextStyle(fontSize: 16, color: Theme.of(context).primaryColorLight),
+      ),
+    ),
+    Expanded(child: Divider()),
+  ]);
+}
+
+Text buildHeadingTexts(BuildContext context, title) {
+  return Text(
+    title,
+    style: TextStyle(
+      fontSize: 16,
+      color: Theme.of(context).primaryColorLight,
+      fontWeight: FontWeight.w600,
+      height: 1.25,
+    ),
+    textHeightBehavior: TextHeightBehavior(applyHeightToFirstAscent: false),
+    textAlign: TextAlign.center,
+  );
+}
+
+Text buildTextforSignupLine(_t, _color) {
+  return Text(
+    _t,
+    style: TextStyle(
+      fontSize: 14,
+      color: _color,
+      letterSpacing: 0.672,
+      fontWeight: FontWeight.w500,
+    ),
+    textAlign: TextAlign.left,
+  );
+}
+
+iconImageContainer(BuildContext context, String image) {
+  return Container(
+    height: 50,
+    width: 50,
+    child: CustomNmorphicForTextFields(
+        Container(
+            child: Center(
+          child: Image.asset(
+            image,
+            height: 24,
+            width: 24,
+          ),
+        )),
+        7),
+  );
 }

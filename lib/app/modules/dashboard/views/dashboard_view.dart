@@ -17,7 +17,7 @@ class DashboardView extends GetView<DashboardController> {
         title: Text(
           'NetSalary',
           style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).primaryColorLight,
               fontWeight: FontWeight.w400),
         ),
       ),

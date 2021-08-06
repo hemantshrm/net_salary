@@ -14,8 +14,11 @@ getAppIcon(context) {
           boxShape: NeumorphicBoxShape.circle(),
           depth: 5,
           lightSource: LightSource.topLeft,
-          shadowLightColor: Colors.white.withOpacity(0.5),
-          shadowDarkColor: Colors.black54,
+          shadowLightColor: ThemeController.to.isDarkTheme
+              ? Colors.white.withOpacity(0.4)
+              : Colors.white,
+          shadowDarkColor:
+              ThemeController.to.isDarkTheme ? Colors.black : Colors.black54,
           color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Padding(

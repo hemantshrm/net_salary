@@ -20,9 +20,9 @@ class CreateProfileView extends GetView<CreateprofileController> {
       appBar: AppBar(
         title: Text(
           'Create Profile',
-          style: TextStyle(
-              color: Theme.of(context).primaryColorLight,
-              fontWeight: FontWeight.w400),
+          style: KTextStyle.f16w5.copyWith(
+            color: Theme.of(context).primaryColorLight,
+          ),
         ),
       ),
       body: Padding(
@@ -60,7 +60,7 @@ class CreateProfileView extends GetView<CreateprofileController> {
                 child: Center(
                   child: Text('Exit',
                       style: KTextStyle.f16w5
-                          .copyWith(color: Theme.of(context).primaryColor)),
+                          .copyWith(color: Theme.of(context).focusColor)),
                 ))
           ],
         ),
@@ -182,7 +182,6 @@ CustomRadioBtn3optionsVertical(
                         Text(
                           text3,
                           style: TextStyle(
-                            fontFamily: 'Montserrat',
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
                             color: const Color(0xff2c2c2c),

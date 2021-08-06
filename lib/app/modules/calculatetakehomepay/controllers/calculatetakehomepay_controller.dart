@@ -4,9 +4,11 @@ import 'package:keyboard_visibility/keyboard_visibility.dart';
 
 class CalculatetakehomepayController extends GetxController
     with SingleGetTickerProviderMixin {
-  //TODO: Implement CalculatetakehomepayController
+  static CalculatetakehomepayController get to =>
+      Get.find<CalculatetakehomepayController>();
+
   final _scrollController = ScrollController();
-  final isKeyboardOpen=false.obs;
+  final isKeyboardOpen = false.obs;
   final activeStep = 0.obs; // Initial step set to 5.
 
   final upperBound = 3.obs; // upperBound MUST BE total number of icons minus 1.
@@ -42,9 +44,7 @@ class CalculatetakehomepayController extends GetxController
 
   setcpacityOfCar(value) => cpacityOfCar.value = value;
 
-
   //========================perqisites second screen=============================================//
-
 
   final mealVoucher = 0.obs;
   final clubMembership = 0.obs;
@@ -55,20 +55,14 @@ class CalculatetakehomepayController extends GetxController
   final medicalInsurance = 0.obs;
   final keymanInsurance = 0.obs;
 
-  setmealVoucher(value)=>mealVoucher.value=value;
-  setclubMembership(value)=>clubMembership.value=value;
-  setfurnitureAppliances(value)=>furnitureAppliances.value=value;
-  setcharges(value)=>charges.value=value;
-  setleaveAssitance(value)=>leaveAssitance.value=value;
-  setgroupMedicalInsurance(value)=>groupMedicalInsurance.value=value;
-  setmedicalInsurance(value)=>medicalInsurance.value=value;
-  setkeymanInsurance(value)=>keymanInsurance.value=value;
-
-
-
-
-
-
+  setmealVoucher(value) => mealVoucher.value = value;
+  setclubMembership(value) => clubMembership.value = value;
+  setfurnitureAppliances(value) => furnitureAppliances.value = value;
+  setcharges(value) => charges.value = value;
+  setleaveAssitance(value) => leaveAssitance.value = value;
+  setgroupMedicalInsurance(value) => groupMedicalInsurance.value = value;
+  setmedicalInsurance(value) => medicalInsurance.value = value;
+  setkeymanInsurance(value) => keymanInsurance.value = value;
 
   AssetImage stepperIconEnabled = AssetImage(
     'assets/images/stepper_icon.png',
@@ -91,7 +85,7 @@ class CalculatetakehomepayController extends GetxController
     super.onInit();
     KeyboardVisibilityNotification().addNewListener(
       onChange: (bool visible) {
-        isKeyboardOpen.value=visible;
+        isKeyboardOpen.value = visible;
       },
     );
 
@@ -155,7 +149,7 @@ class CalculatetakehomepayController extends GetxController
 
   setImageindex(index) {
     for (int i = 0; i < images.length; i++) {
-      if (i<=index) {
+      if (i <= index) {
         images[i] = stepperIconEnabled;
       } else {
         images[i] = stepperIconDiabled;

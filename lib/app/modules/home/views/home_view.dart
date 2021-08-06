@@ -16,10 +16,10 @@ import 'package:net_salary/app/widgets/global_widgets.dart';
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        body: ListView(
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: ListView(
           padding: EdgeInsets.all(KDynamicWidth.width20),
           shrinkWrap: true,
           children: [
@@ -47,61 +47,11 @@ class HomeView extends StatelessWidget {
             GetButton('Sign In', onTap: () {
               Get.to(() => CreateProfileView());
             }),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: KDynamicWidth.width20,
-              ),
-              child: Row(children: <Widget>[
-                Expanded(child: Divider()),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: KDynamicWidth.width10),
-                  child: Text(
-                    "Or Sign In using",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Theme.of(context).primaryColorLight),
-                  ),
-                ),
-                Expanded(child: Divider()),
-              ]),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: Get.width / 6),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  iconImageContainer(
-                      context, 'assets/images/facebook_icon.png'),
-                  iconImageContainer(context, 'assets/images/google.png'),
-                  iconImageContainer(
-                      context,
-                      ThemeController.to.isDarkTheme
-                          ? 'assets/images/apple_dark.png'
-                          : 'assets/images/apple_icon.png'),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: KDynamicWidth.width20,
-              ),
-              child: Row(children: <Widget>[
-                Expanded(child: Divider()),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: KDynamicWidth.width10),
-                  child: Text(
-                    "Or",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Theme.of(context).primaryColorLight),
-                  ),
-                ),
-                Expanded(child: Divider()),
-              ]),
-            ),
+            signInORsignUpUsing(context, 'Or Sign in using'),
+            buildSigninSignUpButtons(context),
+            SizedBox(height: KDynamicWidth.width20),
+            buildOr(context),
+            SizedBox(height: KDynamicWidth.width20),
             GetButton('Continue as Guest', onTap: () {
               Get.toNamed(Routes.DASHBOARD);
             }),
@@ -112,7 +62,6 @@ class HomeView extends StatelessWidget {
                   Get.to(() => SignupView());
                 },
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     buildTextforSignupLine(
@@ -133,54 +82,10 @@ class HomeView extends StatelessWidget {
   }
 }
 
-Text buildHeadingTexts(BuildContext context, title) {
-  return Text(
-    title,
-    style: TextStyle(
-      fontSize: 16,
-      color: Theme.of(context).primaryColorLight,
-      fontWeight: FontWeight.w600,
-      height: 1.25,
-    ),
-    textHeightBehavior: TextHeightBehavior(applyHeightToFirstAscent: false),
-    textAlign: TextAlign.center,
-  );
-}
-
-Text buildTextforSignupLine(_t, _color) {
-  return Text(
-    _t,
-    style: TextStyle(
-      fontSize: 14,
-      color: _color,
-      letterSpacing: 0.672,
-      fontWeight: FontWeight.w500,
-    ),
-    textAlign: TextAlign.left,
-  );
-}
-
-iconImageContainer(BuildContext context, String image) {
-  return Container(
-    height: 50,
-    width: 50,
-    child: CustomNmorphicForTextFields(
-        Container(
-            child: Center(
-          child: Image.asset(
-            image,
-            height: 24,
-            width: 24,
-          ),
-        )),
-        7),
-  );
-}
-
 getEmailPassFields(
     BuildContext context, String heading, String hint, bool isIcon) {
   return Container(
-    height: Get.width / 6,
+    height: Get.width / 5.5,
     child: Neumorphic(
       style: NeumorphicStyle(
         shape: NeumorphicShape.flat,
@@ -194,50 +99,58 @@ getEmailPassFields(
             ThemeController.to.isDarkTheme ? Colors.black : Colors.black54,
         color: Theme.of(context).scaffoldBackgroundColor,
       ),
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.only(left: KDynamicWidth.width20),
-          child: Container(
-            height: 35,
-            child: TextField(
-              style: KTextStyle.f15w4
-                  .copyWith(color: Theme.of(context).primaryColorLight),
-              maxLength: 30,
-              decoration: InputDecoration(
-                  counterText: '',
-                  labelText: heading,
-                  labelStyle: KTextStyle.f15w4
-                      .copyWith(color: Theme.of(context).primaryColorLight),
-                  contentPadding: EdgeInsets.zero,
-                  border: InputBorder.none,
-                  hintText: '$hint',
-                  hintStyle: KTextStyle.f15w4
-                      .copyWith(color: Theme.of(context).primaryColorLight),
-                  suffixIcon: isIcon
-                      ? Icon(
-                          Icons.remove_red_eye,
-                          color: Theme.of(context).primaryColor,
-                        )
-                      : null),
-              textAlign: TextAlign.left,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 10, 0, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: Text(
+                heading,
+                style: KTextStyle.f15w4
+                    .copyWith(color: Theme.of(context).primaryColorLight),
+              ),
             ),
-          ),
+            Container(
+              height: 35,
+              child: TextField(
+                style: KTextStyle.f15w4
+                    .copyWith(color: Theme.of(context).primaryColorLight),
+                maxLength: 30,
+                decoration: InputDecoration(
+                    counterText: '',
+                    // labelText: heading,
+                    labelStyle: KTextStyle.f15w4
+                        .copyWith(color: Theme.of(context).primaryColorLight),
+                    contentPadding: EdgeInsets.zero,
+                    border: InputBorder.none,
+                    hintText: '$hint',
+                    hintStyle: KTextStyle.f15w4
+                        .copyWith(color: Theme.of(context).primaryColorLight),
+                    suffixIcon: isIcon
+                        ? Icon(
+                            Icons.remove_red_eye,
+                            color: Theme.of(context).focusColor,
+                          )
+                        : null),
+                textAlign: TextAlign.left,
+              ),
+            ),
+          ],
         ),
       ),
     ),
   );
 }
 
-getEditTextWithoutIconlongtext(String heading, String hint, {bool isNum}) {
+getEditTextWithoutIconlongtext(
+    BuildContext context, String heading, String hint,
+    {bool isNum}) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: KDynamicWidth.width20),
-    child: FittedBox(
-      child: ClayContainer(
-        height: 90,
-        width: Get.width,
-        borderRadius: 15,
-        color: Color(0xffe0efff),
-        child: Column(
+    height: 90,
+    child: CustomNmorphicForTextFields(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -248,13 +161,8 @@ getEditTextWithoutIconlongtext(String heading, String hint, {bool isNum}) {
                 child: Text(
                   '$heading',
                   maxLines: 2,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff2c2c2c),
-                    letterSpacing: 0.5760000000000001,
-                  ),
-                  textAlign: TextAlign.left,
+                  style: KTextStyle.f16w5
+                      .copyWith(color: Theme.of(context).primaryColorLight),
                 ),
               ),
             ),
@@ -263,12 +171,8 @@ getEditTextWithoutIconlongtext(String heading, String hint, {bool isNum}) {
               child: Container(
                 height: 30,
                 child: TextField(
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 18,
-                    color: const Color(0xff2c2c2c),
-                    letterSpacing: 0.672,
-                  ),
+                  style: KTextStyle.f16w5
+                      .copyWith(color: Theme.of(context).primaryColorLight),
                   inputFormatters: [
                     isNum != null
                         ? CurrencyTextInputFormatter(
@@ -294,8 +198,7 @@ getEditTextWithoutIconlongtext(String heading, String hint, {bool isNum}) {
             ),
           ],
         ),
-      ),
-    ),
+        17),
   );
 }
 
@@ -353,74 +256,68 @@ getEditTextWithoutIconwithLongText(String heading, String text, {bool isNum}) {
   );
 }
 
-getEditTextWithoutIconwithDropDown(String heading, String hint, _dropDownValue,
-    {Function onChange(value)}) {
-  final List<int> items = <int>[0, 1, 2];
-  return Container(
-    margin: EdgeInsets.symmetric(horizontal: KDynamicWidth.width20),
-    child: FittedBox(
-      child: ClayContainer(
-        height: 60,
-        width: Get.width,
-        borderRadius: 15,
-        color: Color(0xffe0efff),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 4, left: KDynamicWidth.width20),
-              child: Container(
-                height: 22,
-                child: Text(
-                  '$heading',
-                  style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff2c2c2c),
-                    letterSpacing: 0.5760000000000001,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
+class GetEditTextWithoutIconwithDropDown extends StatelessWidget {
+  GetEditTextWithoutIconwithDropDown(
+      this.heading, this.hint, this._dropDownValue,
+      {this.onChange});
+  final String heading, hint;
+
+  final Function onChange;
+  final _dropDownValue;
+  @override
+  Widget build(BuildContext context) {
+    final List<int> items = <int>[0, 1, 2];
+    return Container(
+      // margin: EdgeInsets.symmetric(horizontal: KDynamicWidth.width20),
+      child: CustomNmorphicForTextFields(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 4, left: KDynamicWidth.width20),
+                child: Container(
+                    height: 25,
+                    child: Text('$heading',
+                        style: KTextStyle.f16w5
+                            .copyWith(color: Theme.of(context).focusColor))),
               ),
-            ),
-            Container(
-              height: 30,
-              child: DropdownButton(
-                underline: SizedBox(),
-                value: _dropDownValue,
-                isExpanded: true,
-                iconSize: 30.0,
-                style: TextStyle(color: Colors.black),
-                items: [0, 1, 2].map(
-                  (val) {
-                    return DropdownMenuItem<int>(
-                      value: val,
-                      child: Text(val.toString()),
-                    );
-                  },
-                ).toList(),
-                selectedItemBuilder: (BuildContext context) {
-                  return items.map<Widget>((int item) {
-                    return Container(
+              Container(
+                height: 30,
+                child: DropdownButton(
+                  underline: SizedBox(),
+                  value: _dropDownValue,
+                  isExpanded: true,
+                  iconSize: 30.0,
+                  style: TextStyle(color: Colors.black),
+                  items: [0, 1, 2].map(
+                    (val) {
+                      return DropdownMenuItem<int>(
+                        value: val,
+                        child: Text(val.toString()),
+                      );
+                    },
+                  ).toList(),
+                  selectedItemBuilder: (BuildContext context) {
+                    return items.map<Widget>((int item) {
+                      return Container(
                         margin: EdgeInsets.only(left: KDynamicWidth.width20),
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          item.toString(),
-                          textAlign: TextAlign.end,
-                          style: TextStyle(fontSize: 18),
-                        ));
-                  }).toList();
-                },
-                onChanged: (val) {
-                  onChange(val);
-                },
+                        child: Text(item.toString(),
+                            textAlign: TextAlign.end,
+                            style: KTextStyle.f16w5
+                                .copyWith(color: Theme.of(context).focusColor)),
+                      );
+                    }).toList();
+                  },
+                  onChanged: (val) {
+                    onChange(val);
+                  },
+                ),
               ),
-            )
-          ],
-        ),
-      ),
-    ),
-  );
+            ],
+          ),
+          17),
+    );
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -23,6 +25,7 @@ void main() async {
         theme: _controller.theme,
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
+        popGesture: Platform.isIOS ? true : false,
       ),
     ),
   );

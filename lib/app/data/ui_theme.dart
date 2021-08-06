@@ -18,9 +18,10 @@ class CustomTheme {
   static ThemeData get lightTheme {
     //1
     return ThemeData(
+      primaryColor: KColors.BLUE_light,
       primaryColorDark: KColors.BLUE_dark,
       primaryColorLight: Colors.black,
-      primaryColor: KColors.BLUE_light,
+      focusColor: KColors.BLUE_dark,
       scaffoldBackgroundColor: KColors.BG_LIGHT,
       backgroundColor: KColors.BG_LIGHT,
       fontFamily: 'Montserrat',
@@ -38,10 +39,11 @@ class CustomTheme {
   static ThemeData get darkTheme {
     //2
     return ThemeData(
+      primaryColor: KColors.BROWN_light,
       primaryColorDark: KColors.BROWN_dark,
       primaryColorLight: KColors.BROWN_light,
+      focusColor: KColors.BROWN_light,
       backgroundColor: KColors.BROWN_light,
-      primaryColor: KColors.BROWN_light,
       scaffoldBackgroundColor: KColors.BG_DARK,
       fontFamily: 'Montserrat',
       dividerColor: Colors.grey.withOpacity(0.6),
